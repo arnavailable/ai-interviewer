@@ -29,7 +29,7 @@ class templates:
 
     # software engineer
     swe_template = """
-            I want you to act as an interviewer. Remember, you are the interviewer not the candidate. 
+            I want you to act as an interviewer. Remember, you are the interviewer not the candidate. In no way you are to provide the answer.
             
             Let think step by step.
             

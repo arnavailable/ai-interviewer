@@ -3,8 +3,8 @@ from streamlit_option_menu import option_menu
 from streamlit_extras.switch_page_button import switch_page
 from PIL import Image
 
-im = Image.open("icon.jpeg")
-st.set_page_config(page_title = "AI Interviewer", layout = "centered",page_icon=im)
+im = Image.open("images/icon.jpeg")
+st.set_page_config(page_title = "AI Interviewer", layout = "centered", page_icon=im)
 
 #role = st.selectbox("#### Role", ["Recruiter", "Candidate"])
 
