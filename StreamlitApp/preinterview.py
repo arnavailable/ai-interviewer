@@ -16,7 +16,6 @@ from twilio.rest import Client
 from dotenv import load_dotenv
 from streamlit_webrtc import WebRtcMode, webrtc_streamer
 from speech_recognition.openai_whisper import transcribe
-
 load_dotenv()
 
 HERE = Path(__file__).parent
@@ -35,8 +34,8 @@ def get_ice_servers():
 
     # Ref: https://www.twilio.com/docs/stun-turn/api
     try:
-        account_sid = "AC4fdeb5f79758bbf98082092848d69d96"
-        auth_token = "79efa3dad3b5af5a4b97fe727b6d70c6"
+        account_sid = os.getenv("TWILIO_ACCOUNT_SID")
+        auth_token = os.getenv("TWILIO_AUTH_TOKEN")
     except KeyError:
         logger.warning(
             "Twilio credentials are not set. Fallback to a free STUN server from Google."  # noqa: E501

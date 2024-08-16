@@ -2,11 +2,11 @@ from openai import OpenAI
 import assemblyai as aai
 import os
 from dotenv import load_dotenv
-OpenAI.api_key = os.getenv("OPENAI_API_KEY")
-aai.settings.api_key = "f34a6a8d68734c0ea5ed9e54c19fa251"
+load_dotenv()
 import wave
 
-load_dotenv()
+OpenAI.api_key = os.getenv("OPENAI_API_KEY")
+aai.settings.api_key = os.getenv("ASSEMBLYAI_API_KEY")
 
 class Config:
     channels = 2
