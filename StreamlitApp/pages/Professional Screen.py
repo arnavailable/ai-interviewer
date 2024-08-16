@@ -19,6 +19,11 @@ from speech_recognition.openai_whisper import save_wav_file, transcribe
 from audio_recorder_streamlit import audio_recorder
 from aws.synthesize_speech3 import synthesize_speech
 from IPython.display import Audio
+from openai import OpenAI
+import os
+from dotenv import load_dotenv
+load_dotenv()
+OpenAI.api_key = os.getenv("OPENAI_API_KEY")
 
 # Loads the "Welcome" animation
 def load_lottiefile(filepath: str):
@@ -45,7 +50,7 @@ def save_vector(text):
     text_splitter = NLTKTextSplitter()
     texts = text_splitter.split_text(text)
      # Create emebeddings
-    embeddings = OpenAIEmbeddings(openai_api_key = "sk-1W6914esN5qg0ZwDySKMdxcf2LkDr-gPym4CpTATv1T3BlbkFJw05DMfogYmZGuHrMqc1dPJV1CbZPZQ_J8AlrX2oxMA")
+    embeddings = OpenAIEmbeddings()
     docsearch = FAISS.from_texts(texts, embeddings)
     return docsearch
 
@@ -72,7 +77,6 @@ def initialize_session_state_jd():
         st.session_state.token_count = 0
     if "jd_guideline" not in st.session_state:
         llm = ChatOpenAI(
-        openai_api_key = "sk-1W6914esN5qg0ZwDySKMdxcf2LkDr-gPym4CpTATv1T3BlbkFJw05DMfogYmZGuHrMqc1dPJV1CbZPZQ_J8AlrX2oxMA",
         model_name = "gpt-3.5-turbo",
         temperature = 0.8,)
         st.session_state.jd_guideline = RetrievalQA.from_chain_type(
@@ -82,7 +86,6 @@ def initialize_session_state_jd():
     # llm chain and memory
     if "jd_screen" not in st.session_state:
         llm = ChatOpenAI(
-            openai_api_key = "sk-1W6914esN5qg0ZwDySKMdxcf2LkDr-gPym4CpTATv1T3BlbkFJw05DMfogYmZGuHrMqc1dPJV1CbZPZQ_J8AlrX2oxMA",
             model_name="gpt-3.5-turbo",
             temperature=0.8, )
         PROMPT = PromptTemplate(
@@ -109,7 +112,6 @@ def initialize_session_state_jd():
                                                            memory=st.session_state.jd_memory)
     if 'jd_feedback' not in st.session_state:
         llm = ChatOpenAI(
-            openai_api_key = "sk-1W6914esN5qg0ZwDySKMdxcf2LkDr-gPym4CpTATv1T3BlbkFJw05DMfogYmZGuHrMqc1dPJV1CbZPZQ_J8AlrX2oxMA",
             model_name="gpt-3.5-turbo",
             temperature=0.8, )
         st.session_state.jd_feedback = ConversationChain(
