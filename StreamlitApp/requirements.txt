@@ -1,11 +1,11 @@
 langchain
+langchain-community
 PyPDF2
 openai
 wave
 streamlit==1.25.0
 tiktoken
 nltk
-#azure-cognitiveservices-speech
 audio_recorder_streamlit
 streamlit-option-menu
 streamlit-lottie
@@ -13,3 +13,9 @@ faiss-cpu
 boto3
 Ipython
 dotenv
+streamlit_extras
+assemblyai
+streamlit_lottie
+faiss-cpu
+#aws
+#azure-cognitiveservices-speech
